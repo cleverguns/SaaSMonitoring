@@ -5,13 +5,14 @@ import { showNotification } from "../common/headerSlice"
 
 
 const INITIAL_INTEGRATION_LIST = [
-    {name : "Slack", icon : "https://cdn-icons-png.flaticon.com/512/2111/2111615.png", isActive : true, description : "Slack is an instant messaging program designed by Slack Technologies and owned by Salesforce."},
-    {name : "Facebook", icon : "https://cdn-icons-png.flaticon.com/512/124/124010.png", isActive : false, description : "Meta Platforms, Inc., doing business as Meta and formerly named Facebook, Inc., and TheFacebook."},
-    {name : "Linkedin", icon : "https://cdn-icons-png.flaticon.com/512/174/174857.png", isActive : true, description : "LinkedIn is a business and employment-focused social media platform that works through websites and mobile apps."},
-    {name : "Google Ads", icon : "https://cdn-icons-png.flaticon.com/512/2301/2301145.png", isActive : false, description : "Google Ads is an online advertising platform developed by Google, where advertisers bid to display brief advertisements, service offerings"},
-    {name : "Gmail", icon : "https://cdn-icons-png.flaticon.com/512/5968/5968534.png", isActive : false, description : "Gmail is a free email service provided by Google. As of 2019, it had 1.5 billion active users worldwide."},
-    {name : "Salesforce", icon : "https://cdn-icons-png.flaticon.com/512/5968/5968880.png", isActive : false, description : "It provides customer relationship management software and applications focused on sales, customer service, marketing automation."},
-    {name : "Hubspot", icon : "https://cdn-icons-png.flaticon.com/512/5968/5968872.png", isActive : false, description : "American developer and marketer of software products for inbound marketing, sales, and customer service."},
+    {name : "Slack", icon : "https://cdn-icons-png.flaticon.com/512/2111/2111615.png", isActive : true, description : "slack datas"},
+    
+    {name : "Linkedin", icon : "https://cdn-icons-png.flaticon.com/512/174/174857.png", isActive : true, description : "LinkedIn Datas"},
+    {name : "Zendesk", icon : "https://cdn.icon-icons.com/icons2/2429/PNG/512/zendesk_logo_icon_147198.png", isActive : false, description : "Zendesk Data"},
+    {name : "GWS", icon : "https://cdn-icons-png.flaticon.com/512/5968/5968534.png", isActive : false, description : "GWS data."},
+    {name : "AWS", icon : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7W4Xqb76msKl01c3Z6mIJ-IcwSV6OZPsdA&usqp=CAU", isActive : false, description : ""},
+    {name : "Hubspot", icon : "https://cdn-icons-png.flaticon.com/512/5968/5968872.png", isActive : false, description : "Data."},
+    {name : "Zoom", icon : "https://images.squarespace-cdn.com/content/v1/57fbdeb45016e11737b92f21/1591725241180-H5XSU3C179CO1TGYNMK3/Zoom-App-Icon-2.png", isActive : false, description : "Zoom Data"},
 ]
 
 function Integration(){

@@ -1,4 +1,3 @@
-import SelectBox from "../../../components/Input/SelectBox"
 import ArrowDownTrayIcon  from '@heroicons/react/24/outline/ArrowDownTrayIcon'
 import ShareIcon  from '@heroicons/react/24/outline/ShareIcon'
 import EnvelopeIcon  from '@heroicons/react/24/outline/EnvelopeIcon'
@@ -46,18 +45,10 @@ function DashboardTopBar({updateDashboardPeriod}){
                 showShortcuts={true} 
                 primaryColor={"white"} 
             /> 
-            {/* <SelectBox 
-                options={periodOptions}
-                labelTitle="Period"
-                placeholder="Select date range"
-                containerStyle="w-72"
-                labelStyle="hidden"
-                defaultValue="TODAY"
-                updateFormValue={updateSelectBoxValue}
-            /> */}
+        
             </div>
             <div className="text-right ">
-                <button className="btn btn-ghost btn-sm normal-case"><ArrowPathIcon className="w-4 mr-2"/>Refresh Data</button>
+                <button className="btn  btn-ghost bg-green-800  hover:bg-green-800 btn-sm normal-case "><ArrowPathIcon className="w-4 mr-2"/>SYNC</button>
                 <button className="btn btn-ghost btn-sm normal-case  ml-2"><ShareIcon className="w-4 mr-2"/>Share</button>
 
                 <div className="dropdown dropdown-bottom dropdown-end  ml-2">

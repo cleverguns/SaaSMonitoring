@@ -40,15 +40,15 @@ function Billing(){
     return(
         <>
             
-            <TitleCard title="Billing History" topMargin="mt-2">
+            <TitleCard title="Users by Applications" topMargin="mt-2">
 
                 {/* Invoice list in table format loaded constant */}
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
                     <tr>
-                        <th>Invoice No</th>
-                        <th>Invoice Generated On</th>
+                        <th>Unique User</th>
+                        <th>Date Deployed</th>
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Status</th>

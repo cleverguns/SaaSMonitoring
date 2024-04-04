@@ -26,7 +26,7 @@ import {
         const data = {
           datasets: [
             {
-              label: 'Orders > 1k',
+              label: 'data 1',
               data: Array.from({ length: 100 }, () => ({
                 x: Math.random() * 11,
                 y: Math.random() * 31,
@@ -34,7 +34,7 @@ import {
               backgroundColor: 'rgba(255, 99, 132, 1)',
             },
             {
-                label: 'Orders > 2K',
+                label: 'data 2',
                 data: Array.from({ length: 100 }, () => ({
                   x: Math.random() * 12,
                   y: Math.random() * 12,
@@ -45,7 +45,7 @@ import {
         };
   
       return(
-          <TitleCard title={"No of Orders by month (in k)"}>
+          <TitleCard title={"Need Suggestions"}>
                   <Scatter options={options} data={data} />
           </TitleCard>
       )

@@ -26,13 +26,13 @@ function DoughnutChart(){
         },
       };
       
-      const labels = ['Electronics', 'Home Applicances', 'Beauty', 'Furniture', 'Watches', 'Apparel'];
+      const labels = ['GWS', 'Zoom' ,'Slack', 'LinkedIn', 'Jumpcloud', 'GWS'];
       
       const data = {
         labels,
         datasets: [
             {
-                label: '# of Orders',
+                label: '# License',
                 data: [122, 219, 30, 51, 82, 13],
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.8)',
@@ -56,7 +56,7 @@ function DoughnutChart(){
       };
 
     return(
-        <TitleCard title={"Orders by Category"}>
+        <TitleCard title={"Top Application by Users"}>
                 <Doughnut options={options} data={data} />
         </TitleCard>
     )

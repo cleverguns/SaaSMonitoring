@@ -29,12 +29,12 @@ function BarChart(){
         labels,
         datasets: [
           {
-            label: 'Store 1',
+            label: 'Inactive users',
             data: labels.map(() => { return Math.random() * 1000 + 500 }),
             backgroundColor: 'rgba(255, 99, 132, 1)',
           },
           {
-            label: 'Store 2',
+            label: 'Active Users',
             data: labels.map(() => { return Math.random() * 1000 + 500 }),
             backgroundColor: 'rgba(53, 162, 235, 1)',
           },
@@ -42,7 +42,7 @@ function BarChart(){
       };
 
     return(
-      <TitleCard title={"Revenue"}>
+      <TitleCard title={"Jump Cloud"}>
             <Bar options={options} data={data} />
       </TitleCard>
 

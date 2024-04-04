@@ -26,21 +26,21 @@ import {
           },
         };
         
-        const labels = ['India', 'Middle East', 'Europe', 'US', 'Latin America', 'Asia(non-india)'];
+        const labels = ['High', 'Medium', 'Low', 'None'];
         
         const data = {
           labels,
           datasets: [
               {
-                  label: '# of Orders',
-                  data: [122, 219, 30, 51, 82, 13],
+                  label: 'SaaS',
+                  data: [122, 219, 30, 51],
                   backgroundColor: [
                     'rgba(255, 99, 255, 0.8)',
                     'rgba(54, 162, 235, 0.8)',
                     'rgba(255, 206, 255, 0.8)',
                     'rgba(75, 192, 255, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 255, 0.8)',
+                    
+                   
                   ],
                   borderColor: [
                     'rgba(255, 99, 255, 1)',
@@ -48,7 +48,7 @@ import {
                     'rgba(255, 206, 255, 1)',
                     'rgba(75, 192, 255, 1)',
                     'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 255, 1)',
+                   
                   ],
                   borderWidth: 1,
                 }
@@ -56,11 +56,10 @@ import {
         };
   
       return(
-          <TitleCard title={"Orders by country"}>
+          <TitleCard title={"Policies overview"}>
                   <Pie options={options} data={data} />
           </TitleCard>
       )
   }
-  
   
   export default PieChart
