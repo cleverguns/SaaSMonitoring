@@ -4,6 +4,7 @@ import TitleCard from "../../components/Cards/TitleCard"
 import { showNotification } from "../common/headerSlice"
 
 
+
 const INITIAL_INTEGRATION_LIST = [
     {name : "Slack", icon : "https://cdn-icons-png.flaticon.com/512/2111/2111615.png", isActive : true, description : "slack datas"},
     
@@ -30,9 +31,14 @@ function Integration(){
         }))
         dispatch(showNotification({message : `${integration.name} ${integration.isActive ? "disabled" : "enabled"}` , status : 1}))
     }
-
+    
+    
+    
+    
 
     return(
+
+      
         <>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {

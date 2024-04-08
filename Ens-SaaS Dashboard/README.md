@@ -40,7 +40,9 @@ Go to project directory and run (make sure you have node installed first)
 
 
 
-# task
+# tasks 4/8/2024
 
-1. sidebar.js - configure
-
+1. sidebar.js - configure (done)
+2. Re Desing Pages with 404 (ano pa yung kulang now?)
+3. Crud in Notification 
+4. create Crud in Applications (API integrations - add button for adding new SaaS Apps) - corrdinate with backend

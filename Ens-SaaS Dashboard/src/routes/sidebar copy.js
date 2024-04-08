@@ -31,31 +31,26 @@ const routes = [
   },
 
 
-
   {
     path: '/app/leads', // url
-    icon: <InboxArrowDownIcon className={iconClasses}/>, // icon component
-    name: 'Users', // name that appear in Sidebar
-
-    submenu: [
-
-      {
-        path: '/app/leads', // url
-        icon: <InboxArrowDownIcon className={iconClasses}/>, // icon component
-        name: 'Users', // name that appear in Sidebar
-
-      },
-
-      {
-        path: '/app/NewRoster', // url
+     icon: <InboxArrowDownIcon className={`${iconClasses} inline` }/>, // icon component
+     name: 'Users', // name that appear in Sidebar  
+     submenu : [
+       {
+         path: '/app/settings-billing',
+         icon: <WalletIcon className={submenuIconClasses}/>,
+         name: 'Deployed Applications/licenses -under',
+       },
+       {
+        path: '/app/settings-team', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
-        name: 'New Roster', // name that appear in Sidebar
-      },
-    ]
-  },
+        name: 'Team Members', // name that appear in Sidebar
+      }
+     ]
+   }, 
 
 
-  
+   
   {
     path: '/app/transactions', // url
     icon: <CurrencyDollarIcon className={iconClasses}/>, // icon component
@@ -63,30 +58,10 @@ const routes = [
     
 
   },
-
-
-
-
-
   {
     path: '/app/charts', // url
     icon: <ChartBarIcon className={iconClasses}/>, // icon component
     name: 'Analytics', // name that appear in Sidebar
-
-    submenu : [
-      {
-        path: '/app/charts', // url
-        icon: <ChartBarIcon className={iconClasses}/>, // icon component
-        name: 'Analytics', // name that appear in Sidebar
-      },
-      {
-        path: '/app/spending', // url routes nito nasa features lahat
-        icon: <ChartBarIcon className={iconClasses}/>, // icon component
-        name: 'Spending', // name that appear in Sidebar
-      },
-
-
-              ]
   },
 
 
@@ -106,7 +81,7 @@ const routes = [
       },
 
       {
-        path: '/app/blank', // url /app/NewSaas - temporaray lang tong app blank
+        path: '/app/NewSaas', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'Add New SaaS Application', // name that appear in Sidebar
       },

@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     // 👆 daisy UI themes initialization
-    themeChange(false)
+    themeChange(true) // - config change to false if you want to make Daisy UI remains
   }, [])
 
 
