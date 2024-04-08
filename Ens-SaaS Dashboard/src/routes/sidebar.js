@@ -34,27 +34,48 @@ const routes = [
 
   {
     path: '/app/leads', // url
-    icon: <InboxArrowDownIcon className={iconClasses}/>, // icon component
+    icon: <InboxArrowDownIcon className={`${iconClasses} inline` }/>, // icon component
     name: 'Users', // name that appear in Sidebar
 
     submenu: [
 
       {
-        path: '/app/leads', // url
+        path: 'leads', // url
         icon: <InboxArrowDownIcon className={iconClasses}/>, // icon component
         name: 'Users', // name that appear in Sidebar
 
       },
 
       {
-        path: '/app/NewRoster', // url
+        path: 'NewRoster', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'New Roster', // name that appear in Sidebar
       },
     ]
   },
 
+  {
+    path: '', //no url needed as this has submenu
+    icon: <BoltIcon className={`${iconClasses} inline` }/>, // icon component
+    name: 'Applications', // name that appear in Sidebar
 
+
+    submenu : [
+
+      {
+        path: 'integration', // url
+        icon: <BoltIcon  className={submenuIconClasses}/>, // icon component 
+        name: 'Applications', // name that appear in Sidebar
+      },
+
+      {
+        path: 'blank', // url /app/NewSaas - temporaray lang tong app blank
+        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        name: 'Add New SaaS Application', // name that appear in Sidebar
+      },
+    ]
+   
+  },
   
   {
     path: '/app/transactions', // url
@@ -67,16 +88,15 @@ const routes = [
 
 
 
-
   {
     path: '/app/charts', // url
-    icon: <ChartBarIcon className={iconClasses}/>, // icon component
+    icon: <ChartBarIcon className={`${iconClasses} inline` }/>, // icon component
     name: 'Analytics', // name that appear in Sidebar
 
     submenu : [
       {
         path: '/app/charts', // url
-        icon: <ChartBarIcon className={iconClasses}/>, // icon component
+        icon: <ChartBarIcon className={submenuIconClasses}/>, // icon component
         name: 'Analytics', // name that appear in Sidebar
       },
       {
@@ -88,33 +108,6 @@ const routes = [
 
               ]
   },
-
-
-
-
-  {
-    path: '/app/integration', // url
-    icon: <BoltIcon className={iconClasses}/>, // icon component
-    name: 'Applications', // name that appear in Sidebar
-
-    submenu : [
-
-      {
-        path: '/app/integration', // url
-        icon: <BoltIcon className={iconClasses}/>, // icon component
-        name: 'Applications', // name that appear in Sidebar
-      },
-
-      {
-        path: '/app/blank', // url /app/NewSaas - temporaray lang tong app blank
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
-        name: 'Add New SaaS Application', // name that appear in Sidebar
-      },
-    ]
-  },
-
-
-
 
   {
     path: '/app/calendar', // url

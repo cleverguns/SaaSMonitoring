@@ -46,3 +46,7 @@ Go to project directory and run (make sure you have node installed first)
 2. Re Desing Pages with 404 (ano pa yung kulang now?)
 3. Crud in Notification 
 4. create Crud in Applications (API integrations - add button for adding new SaaS Apps) - corrdinate with backend
+
+5. costing
+6. lagay yung application sunod sa Users
+7. How to fetch this ( SaaS Notifications API Endpoints: GET::LIST: https://oguj2kgkxa.execute-api.ap-northeast-1.amazonaws.com/notifications/ POST::CREATE: https://oguj2kgkxa.execute-api.ap-northeast-1.amazonaws.com/notifications)
