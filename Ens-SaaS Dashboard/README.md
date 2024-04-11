@@ -38,15 +38,44 @@ Go to project directory and run (make sure you have node installed first)
 5. upcoming Renewals (mga SaaS Apps na need na mag renew or malapit na )
 6. Findings(optional)
 
+# Special notes
+
+leads = users
+Integration = Applications
 
 
-# tasks 4/8/2024
+
+
+# tasks 4/10/2024
 
 1. sidebar.js - configure (done)
 2. Re Desing Pages with 404 (ano pa yung kulang now?)
 3. Crud in Notification 
 4. create Crud in Applications (API integrations - add button for adding new SaaS Apps) - corrdinate with backend
 
-5. costing
-6. lagay yung application sunod sa Users
-7. How to fetch this ( SaaS Notifications API Endpoints: GET::LIST: https://oguj2kgkxa.execute-api.ap-northeast-1.amazonaws.com/notifications/ POST::CREATE: https://oguj2kgkxa.execute-api.ap-northeast-1.amazonaws.com/notifications)
+5. costing page + Application after Users (done)
+6. Checking Axios method
+7. To fetch this ( SaaS Notifications API Endpoints: GET::LIST: https://oguj2kgkxa.execute-api.ap-northeast-1.amazonaws.com/notifications/ POST::CREATE: https://oguj2kgkxa.execute-api.ap-northeast-1.amazonaws.com/notifications)
+
+
+
+
+# tasks 4/11/2024
+1. Test API payloads (𝐀𝐏𝐈𝐬: 𝐓𝐡𝐫𝐞𝐚𝐭𝐬, 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲 𝐚𝐧𝐝 𝐁𝐞𝐬𝐭 𝐏𝐫𝐚𝐜𝐭𝐢𝐜𝐞𝐬) 2 hrs
+2. Fetch API to frontend raw data to organized
+  -calendar Get axious
+3. Clean code and optimization - kasi inuupload na to sa staging 
+
+# Tasks 4/12/2024
+
+1. Create page Add New SaaS Application - for this one pwede gayahin si "Leads" Users tapos may modal lang
+Input fields requirements - FORM
+Can add contracts or additional documents
+Add attachments
+picture-logo
+billed to Varchar
+mode of payment varchar
+expiration date (date)
+contract renewal (date)
+amount (currency)
+...Check the saas checklist for more info

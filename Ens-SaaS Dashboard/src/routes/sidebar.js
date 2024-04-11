@@ -19,6 +19,8 @@ import UsersIcon from '@heroicons/react/24/outline/UsersIcon'
 import KeyIcon from '@heroicons/react/24/outline/KeyIcon'
 import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon'
 
+
+
 const iconClasses = `h-6 w-6`
 const submenuIconClasses = `h-5 w-5`
 
@@ -34,21 +36,21 @@ const routes = [
 
   {
     path: '/app/leads', // url
-    icon: <InboxArrowDownIcon className={`${iconClasses} inline` }/>, // icon component
+    icon: <UsersIcon className={`${iconClasses} inline` }/>, // icon component
     name: 'Users', // name that appear in Sidebar
 
     submenu: [
 
       {
         path: 'leads', // url
-        icon: <InboxArrowDownIcon className={iconClasses}/>, // icon component
+        icon: <TableCellsIcon className={iconClasses}/>, // icon component
         name: 'Users', // name that appear in Sidebar
 
       },
 
       {
         path: 'NewRoster', // url
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        icon: <DocumentTextIcon className={submenuIconClasses}/>, // icon component
         name: 'New Roster', // name that appear in Sidebar
       },
     ]
@@ -69,10 +71,11 @@ const routes = [
       },
 
       {
-        path: 'blank', // url /app/NewSaas - temporaray lang tong app blank
-        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
-        name: 'Add New SaaS Application', // name that appear in Sidebar
+        path: 'integration/components/',// URL path for NewSaas component
+        icon: <CodeBracketSquareIcon className={submenuIconClasses} />, // Icon component
+        name: 'Add New SaaS Application', // Name that appears in the sidebar
       },
+
     ]
    
   },
@@ -97,11 +100,11 @@ const routes = [
       {
         path: '/app/charts', // url
         icon: <ChartBarIcon className={submenuIconClasses}/>, // icon component
-        name: 'Analytics', // name that appear in Sidebar
+        name: 'Application Usages', // name that appear in Sidebar
       },
       {
         path: '/app/spending', // url routes nito nasa features lahat
-        icon: <ChartBarIcon className={iconClasses}/>, // icon component
+        icon: <WalletIcon className={iconClasses}/>, // icon component
         name: 'Spending', // name that appear in Sidebar
       },
 

@@ -2,6 +2,9 @@
 
 import { lazy } from 'react'
 
+
+//import NewSaaS from '../feature/NewSaaS'; // Import the NewSaaS component
+
 const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Welcome = lazy(() => import('../pages/protected/Welcome'))
 const Page404 = lazy(() => import('../pages/protected/404'))
@@ -17,6 +20,14 @@ const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
 const GettingStarted = lazy(() => import('../pages/GettingStarted'))
 const DocFeatures = lazy(() => import('../pages/DocFeatures'))
 const DocComponents = lazy(() => import('../pages/DocComponents'))
+
+
+//const SaaSCrud  = lazy(() => import('../pages/protected/SaaS'))
+const SpendOverview = lazy(() => import('../pages/protected/SpendOverview')); // Import the component
+
+
+
+
 
 
 const routes = [
@@ -80,6 +91,16 @@ const routes = [
     path: '/blank',
     component: Blank,
   },
+  {
+    path: '/spending', // Add the path for SpendOverview
+    component: SpendOverview, // Assigning component
+  },
+
+ 
+ 
+
 ]
 
 export default routes
+
+

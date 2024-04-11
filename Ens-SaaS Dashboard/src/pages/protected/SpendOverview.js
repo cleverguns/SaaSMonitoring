@@ -1,9 +1,7 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import TitleCard from "../../components/Cards/TitleCard"
-import { showNotification } from "../common/headerSlice"
-
-
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setPageTitle } from '../../features/common/headerSlice'
+import Dashboard from '../../features/dashboard/index'
 
 function SpendOverview() {
     return (
@@ -38,7 +36,7 @@ function SpendOverview() {
               </div>
               <div>$113,375</div>
             </div>
-            {/* ... Add more entries for other categories */}
+       
             <div className="flex items-center justify-between font-medium text-gray-500">
               <div>Authentication</div>
               <div>1Password</div>

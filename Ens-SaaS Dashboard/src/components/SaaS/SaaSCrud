@@ -1,0 +1,75 @@
+// src/components/SaaS/SaaSCrud.js
+
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSaas, deleteSaas, updateSaas } from '../../features/saas/saasSlice';
+
+const SaaSCrud = () => {
+  const [editing, setEditing] = useState(null);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const dispatch = useDispatch();
+  const saasList = useSelector(state => state.saas.saasList);
+
+  const handleEdit = (saas) => {
+    setEditing(saas.id);
+    setName(saas.name);
+    setDescription(saas.description);
+  };
+
+  const handleCancelEdit = () => {
+    setEditing(null);
+    setName('');
+    setDescription('');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (editing !== null) {
+      dispatch(updateSaas({ id: editing, name, description }));
+    } else {
+      dispatch(addSaas({ name, description }));
+    }
+    handleCancelEdit();
+  };
+
+  const handleDelete = (id) => {
+    dispatch(deleteSaas(id));
+  };
+
+  return (
+    <div>
+      <h2>Add/Edit SaaS</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+        <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <button type="submit">{editing !== null ? 'Update' : 'Add'}</button>
+        {editing !== null && <button type="button" onClick={handleCancelEdit}>Cancel</button>}
+      </form>
+      <h2>SaaS Applications</h2>
+      <ul>
+        {saasList.map(saas => (
+          <li key={saas.id}>
+            {editing === saas.id ? (
+              <form onSubmit={handleSubmit}>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+                <button type="submit">Update</button>
+                <button type="button" onClick={handleCancelEdit}>Cancel</button>
+              </form>
+            ) : (
+              <>
+                <div>{saas.name}</div>
+                <div>{saas.description}</div>
+                <button onClick={() => handleEdit(saas)}>Edit</button>
+                <button onClick={() => handleDelete(saas.id)}>Delete</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default SaaSCrud;
