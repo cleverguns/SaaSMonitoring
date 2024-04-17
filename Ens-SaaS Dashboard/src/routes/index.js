@@ -14,6 +14,7 @@ const Leads = lazy(() => import('../pages/protected/Leads'))
 const Integration = lazy(() => import('../pages/protected/Integration'))
 const Calendar = lazy(() => import('../pages/protected/Calendar'))
 const Team = lazy(() => import('../pages/protected/Team'))
+
 const Transactions = lazy(() => import('../pages/protected/Transactions'))
 const Bills = lazy(() => import('../pages/protected/Bills'))
 const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
@@ -24,6 +25,8 @@ const DocComponents = lazy(() => import('../pages/DocComponents'))
 
 //const SaaSCrud  = lazy(() => import('../pages/protected/SaaS'))
 const SpendOverview = lazy(() => import('../pages/protected/SpendOverview')); // Import the component
+const SaaSInventory = lazy(() => import('../pages/protected/SaaSInventory'))
+
 
 
 
@@ -95,7 +98,12 @@ const routes = [
     path: '/spending', // Add the path for SpendOverview
     component: SpendOverview, // Assigning component
   },
+  {
+    path: '/settings-SaaSInventory',
+    component: SaaSInventory,
+  },
 
+ 
  
  
 

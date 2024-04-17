@@ -69,13 +69,46 @@ Integration = Applications
 # Tasks 4/12/2024
 
 1. Create page Add New SaaS Application - for this one pwede gayahin si "Leads" Users tapos may modal lang
-Input fields requirements - FORM
+
 Can add contracts or additional documents
 Add attachments
 picture-logo
 billed to Varchar
-mode of payment varchar
+mode of payment varchar   
 expiration date (date)
 contract renewal (date)
 amount (currency)
-...Check the saas checklist for more info
+
+# Tasks 4/16/2024
+
+Notification in NAVBAR
+
+1. nasa email
+
+# Tasks 4/17/2024
+
+
+List Down all Data i need in SaaS
+
+for example - Zoom
+Name, ussage, deployed license per emoloyee, department etc
+
+
+Jump Cloud
+Name, ussage, deployed license per emoloyee, department etc
+
+
+
+
+# Tasks 4/17/2024
+
+
+SaaS Inventory Fetching
+
+List of all SaaS fetchings 
+
+Simple List - Reference zendesk = https://enshored.zendesk.com/agent/filters/27338599217049
+
+Lagay muna place holder 
+
+for example SaaS name with icon,  expiration date etc placeholder....

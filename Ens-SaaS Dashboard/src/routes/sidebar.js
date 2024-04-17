@@ -108,6 +108,12 @@ const routes = [
         name: 'Spending', // name that appear in Sidebar
       },
 
+      {
+        path: '/app/spending', // url routes nito nasa features lahat
+        icon: <WalletIcon className={iconClasses}/>, // icon component
+        name: 'costing', // name that appear in Sidebar
+      },
+
 
               ]
   },
@@ -165,6 +171,12 @@ const routes = [
         path: '/app/settings-team', // url
         icon: <UsersIcon className={submenuIconClasses}/>, // icon component
         name: 'Team Members', // name that appear in Sidebar
+      },
+
+      {
+        path: '/app/settings-SaaSInventory', // url
+        icon: <UsersIcon className={submenuIconClasses}/>, // icon component
+        name: 'SaaSInventory', // name that appear in Sidebar
       },
     ]
 
