@@ -41,7 +41,7 @@ export const deleteSaaS = createAsyncThunk("saas/deleteSaaS", async (id) => { //
       Authorization: "Bearer sample",
     },
   });
-  return id; // Return the ID of the deleted item
+  return id; 
 });
 
 const saasSlice = createSlice({

@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
+// Integration component
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TitleCard from "../../components/Cards/TitleCard";
-import { createSaaS, getAllSaaS, updateSaaS } from "../common/saasSlice"; 
+import { createSaaS, getAllSaaS, updateSaaS, deleteSaaS } from "../common/saasSlice";
 import moment from "moment";
 import TopSideButtons from "./components/TopSideButtons";
-import EditModal from "./components/EditModal"; 
+import EditModal from "./components/EditModal";
+import Swal from "sweetalert2"; // Import SweetAlert
+import DeleteModal from "./components/DeleteModal"; // Import the DeleteModal component
 
 function Integration() {
   const dispatch = useDispatch();
-  const [editData, setEditData] = useState(null); 
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [editData, setEditData] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [deleteItemId, setDeleteItemId] = useState(null); // State to store the ID of the item to delete
   const { saasListData } = useSelector((state) => state.saas);
 
   useEffect(() => {
@@ -20,7 +24,7 @@ function Integration() {
     dispatch(
       createSaaS({
         application: "Google Workspace",
-        expiration: "2024-04-19T02:43:14.300Z",   
+        expiration: "2024-04-19T02:43:14.300Z",
         description: "Google Admin Console",
       })
     );
@@ -28,19 +32,46 @@ function Integration() {
 
   const onEdit = (data) => {
     console.log("Edit button clicked with data:", data);
-    setEditData(data); 
+    setEditData(data);
   };
 
   const onCloseModal = () => {
-    setEditData(null); 
+    setEditData(null);
   };
 
   const onSubmitEdit = (editedData) => {
-    dispatch(updateSaaS(editedData)); 
-    onCloseModal(); 
+    console.log("Submitting edited data:", editedData);
+    dispatch(updateSaaS(editedData));
+    onCloseModal();
   };
 
-  
+  const onDelete = (id) => {
+    // Display SweetAlert for deletion confirmation
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setDeleteItemId(id); // Set the ID of the item to delete if confirmed
+      }
+    });
+  };
+
+  const onCancelDelete = () => {
+    // Reset deleteItemId if deletion is canceled
+    setDeleteItemId(null);
+  };
+
+  const onConfirmDelete = () => {
+    dispatch(deleteSaaS(deleteItemId)); // Dispatch delete action with the item's ID
+    setDeleteItemId(null); // Reset deleteItemId
+  };
+
   const filteredSaasList = saasListData.filter((saas) =>
     saas.application.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -50,7 +81,7 @@ function Integration() {
       <TitleCard
         title="List of All SaaS Application"
         topMargin="mt-2"
-        TopSideButtons={<TopSideButtons setSearchQuery={setSearchQuery} />} 
+        TopSideButtons={<TopSideButtons setSearchQuery={setSearchQuery} />}
       >
         {/* Search input */}
         <div className="mb-4">
@@ -63,7 +94,6 @@ function Integration() {
           />
         </div>
 
-     
         <div className="overflow-x-auto w-full">
           <table className="table w-full">
             <thead>
@@ -80,9 +110,9 @@ function Integration() {
               </tr>
             </thead>
             <tbody>
-              {filteredSaasList.map(({ application, expiration, description }) => {
+              {filteredSaasList.map(({ id, application, expiration, description }) => {
                 return (
-                  <tr key={application}>
+                  <tr key={id}>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -112,11 +142,14 @@ function Integration() {
                         </button>
                         <button
                           className="btn px-6 btn-sm normal-case btn-primary"
-                          onClick={() => onEdit({ application, expiration, description })}
+                          onClick={() => onEdit({ id, application, expiration, description })}
                         >
                           Edit
                         </button>
-                        <button className="btn px-6 btn-sm normal-case btn-primary">
+                        <button
+                          className="btn px-6 btn-sm normal-case btn-primary"
+                          onClick={() => onDelete(id)} // Pass the item's ID to onDelete
+                        >
                           Delete
                         </button>
                       </div>
@@ -128,14 +161,16 @@ function Integration() {
           </table>
         </div>
       </TitleCard>
-     
-
 
       {editData && (
-        <EditModal
-          data={editData}
-          onClose={onCloseModal}
-          onSubmit={onSubmitEdit}
+        <EditModal data={editData} onClose={onCloseModal} onSubmit={onSubmitEdit} />
+      )}
+
+      {/* Render DeleteModal if deleteItemId is not null */}
+      {deleteItemId && (
+        <DeleteModal
+          onDelete={onConfirmDelete}
+          onCancel={onCancelDelete}
         />
       )}
     </>

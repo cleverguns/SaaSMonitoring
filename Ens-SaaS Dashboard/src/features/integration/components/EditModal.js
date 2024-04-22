@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const EditModal = ({ data, onClose, onSubmit }) => {
   const [editedData, setEditedData] = useState(data);
+
+  useEffect(() => {
+    // Reset the edited data whenever the data prop changes
+    setEditedData(data);
+  }, [data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,8 +16,10 @@ const EditModal = ({ data, onClose, onSubmit }) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onSubmit(editedData);
+    onClose(); // Close the modal after submitting
   };
 
   return (
