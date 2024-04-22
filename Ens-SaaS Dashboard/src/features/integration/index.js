@@ -1,67 +1,145 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import TitleCard from "../../components/Cards/TitleCard"
-import { showNotification } from "../common/headerSlice"
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import TitleCard from "../../components/Cards/TitleCard";
+import { createSaaS, getAllSaaS, updateSaaS } from "../common/saasSlice"; 
+import moment from "moment";
+import TopSideButtons from "./components/TopSideButtons";
+import EditModal from "./components/EditModal"; 
+
+function Integration() {
+  const dispatch = useDispatch();
+  const [editData, setEditData] = useState(null); 
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const { saasListData } = useSelector((state) => state.saas);
+
+  useEffect(() => {
+    dispatch(getAllSaaS());
+  }, [dispatch]);
+
+  const onSave = () => {
+    dispatch(
+      createSaaS({
+        application: "Google Workspace",
+        expiration: "2024-04-19T02:43:14.300Z",   
+        description: "Google Admin Console",
+      })
+    );
+  };
+
+  const onEdit = (data) => {
+    console.log("Edit button clicked with data:", data);
+    setEditData(data); 
+  };
+
+  const onCloseModal = () => {
+    setEditData(null); 
+  };
+
+  const onSubmitEdit = (editedData) => {
+    dispatch(updateSaaS(editedData)); 
+    onCloseModal(); 
+  };
+
+  
+  const filteredSaasList = saasListData.filter((saas) =>
+    saas.application.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <>
+      <TitleCard
+        title="List of All SaaS Application"
+        topMargin="mt-2"
+        TopSideButtons={<TopSideButtons setSearchQuery={setSearchQuery} />} 
+      >
+        {/* Search input */}
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Search SaaS Application"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="border border-gray-300 rounded-md p-2"
+          />
+        </div>
+
+     
+        <div className="overflow-x-auto w-full">
+          <table className="table w-full">
+            <thead>
+              <tr>
+                <th>SaaS Name</th>
+                <th>Admin/Owner</th>
+                <th>Description</th>
+                <th>Mode of payment</th>
+                <th>Billing Cycle</th>
+                <th>Subscription Duration</th>
+                <th>Number of licenses</th>
+                <th>Expiration</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredSaasList.map(({ application, expiration, description }) => {
+                return (
+                  <tr key={application}>
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                          {/* <div className="mask mask-circle w-12 h-12">
+                            <img src={l.avatar} alt="Avatar" /> 
+                          </div> TODO" AVATAR / ICON*/}
+                        </div>
+                        <div>
+                          <div className="font-bold">{application}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>{/* Display Admin/Owner */}</td>
+                    <td>{/* Display Description */}</td>
+                    <td>{/* Display Mode of payment */}</td>
+                    <td>{/* Display Billing Cycle */}</td>
+                    <td>{/* Display Subscription Duration */}</td>
+                    <td>{/* Display Number of licenses */}</td>
+                    <td>{moment(expiration).format("LL")}</td>
+                    <td>
+                      <div className="flex gap-2">
+                        <button
+                          className="btn px-6 btn-sm normal-case btn-primary"
+                          onClick={onSave}
+                        >
+                          Save
+                        </button>
+                        <button
+                          className="btn px-6 btn-sm normal-case btn-primary"
+                          onClick={() => onEdit({ application, expiration, description })}
+                        >
+                          Edit
+                        </button>
+                        <button className="btn px-6 btn-sm normal-case btn-primary">
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </TitleCard>
+     
 
 
-
-const INITIAL_INTEGRATION_LIST = [
-    {name : "Slack", icon : "https://cdn-icons-png.flaticon.com/512/2111/2111615.png", isActive : true, description : "slack datas"},
-    
-    {name : "Linkedin", icon : "https://cdn-icons-png.flaticon.com/512/174/174857.png", isActive : true, description : "LinkedIn Datas"},
-    {name : "Zendesk", icon : "https://cdn.icon-icons.com/icons2/2429/PNG/512/zendesk_logo_icon_147198.png", isActive : false, description : "Zendesk Data"},
-    {name : "GWS", icon : "https://cdn-icons-png.flaticon.com/512/5968/5968534.png", isActive : false, description : "GWS data."},
-    {name : "AWS", icon : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7W4Xqb76msKl01c3Z6mIJ-IcwSV6OZPsdA&usqp=CAU", isActive : false, description : ""},
-    {name : "Hubspot", icon : "https://cdn-icons-png.flaticon.com/512/5968/5968872.png", isActive : false, description : "Data."},
-    {name : "Zoom", icon : "https://images.squarespace-cdn.com/content/v1/57fbdeb45016e11737b92f21/1591725241180-H5XSU3C179CO1TGYNMK3/Zoom-App-Icon-2.png", isActive : false, description : "Zoom Data"},
-]
-
-function Integration(){
-
-    const dispatch = useDispatch()
-
-    const [integrationList, setIntegrationList] = useState(INITIAL_INTEGRATION_LIST)
-
-
-    const updateIntegrationStatus = (index) => {
-        let integration = integrationList[index]
-        setIntegrationList(integrationList.map((i, k) => {
-            if(k===index)return {...i, isActive : !i.isActive}
-            return i
-        }))
-        dispatch(showNotification({message : `${integration.name} ${integration.isActive ? "disabled" : "enabled"}` , status : 1}))
-    }
-    
-    
-    
-    
-
-    return(
-
-      
-        <>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {
-                integrationList.map((i, k) => {
-                    return(
-                        <TitleCard key={k} title={i.name} topMargin={"mt-2"}>
-                            
-                            <p className="flex">
-                                <img alt="icon" src={i.icon} className="w-12 h-12 inline-block mr-4" />
-                                {i.description}
-                            </p>
-                            <div className="mt-6 text-right">
-                                <input type="checkbox" className="toggle toggle-success toggle-lg" checked={i.isActive} onChange={() => updateIntegrationStatus(k)}/>
-                            </div>
-                            
-                        </TitleCard>
-                    )
-                
-                })
-            }
-            </div>
-        </>
-    )
+      {editData && (
+        <EditModal
+          data={editData}
+          onClose={onCloseModal}
+          onSubmit={onSubmitEdit}
+        />
+      )}
+    </>
+  );
 }
 
-export default Integration
+export default Integration;

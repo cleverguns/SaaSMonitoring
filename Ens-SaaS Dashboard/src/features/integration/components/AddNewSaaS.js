@@ -1,25 +1,41 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import TitleCard from '../../components/Cards/TitleCard';
-import { openModal } from '../common/modalSlice';
-import { MODAL_BODY_TYPES } from '../../utils/globalConstantUtil';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import TitleCard from "../../components/Cards/TitleCard";
+import { getAllSaaS, updateSaaS } from "../common/saasSlice";
+import moment from "moment";
+import TopSideButtons from "./components/TopSideButtons";
+import EditModal from "./components/EditModal";
 
-function AddNewSaaS() {
+function Integration() {
   const dispatch = useDispatch();
+  const [editData, setEditData] = useState(null);
+  // Other state variables and useEffect
 
-  const openAddNewSaaSModal = () => {
-    dispatch(openModal({ title: 'Add New SaaS', bodyType: MODAL_BODY_TYPES.SAAS_ADD_NEW }));
+  const onEdit = (data) => {
+    setEditData(data);
+  };
+
+  const onCloseModal = () => {
+    setEditData(null);
+  };
+
+  const onSubmitEdit = (editedData) => {
+    dispatch(updateSaaS(editedData));
+    onCloseModal();
   };
 
   return (
-    <TitleCard title="Integration" topMargin="mt-2">
-      <div className="text-right">
-        <button className="btn btn-sm btn-primary" onClick={openAddNewSaaSModal}>
-          Add New
-        </button>
-      </div>
-    </TitleCard>
+    <>
+      {/* TitleCard and other JSX */}
+      {editData && (
+        <EditModal
+          data={editData}
+          onClose={onCloseModal}
+          onSubmit={onSubmitEdit}
+        />
+      )}
+    </>
   );
 }
 
-export default AddNewSaaS;
+export default Integration;

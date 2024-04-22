@@ -16,7 +16,7 @@ const INITIAL_INTEGRATION_LIST = [
     contractRenewal: null, // Date
     amount: 0, // Currency
   },
-  // Other initial integration objects...
+
 ];
 
 const saasSlice = createSlice({
