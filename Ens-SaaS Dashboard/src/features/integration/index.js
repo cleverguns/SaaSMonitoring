@@ -7,13 +7,13 @@ import moment from "moment";
 import TopSideButtons from "./components/TopSideButtons";
 import EditModal from "./components/EditModal";
 import Swal from "sweetalert2"; // Import SweetAlert
-import DeleteModal from "./components/DeleteModal"; // Import the DeleteModal component
+import DeleteModal from "./components/DeleteModal"; 
 
 function Integration() {
   const dispatch = useDispatch();
   const [editData, setEditData] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [deleteItemId, setDeleteItemId] = useState(null); // State to store the ID of the item to delete
+  const [deleteItemId, setDeleteItemId] = useState(null);
   const { saasListData } = useSelector((state) => state.saas);
 
   useEffect(() => {
@@ -24,8 +24,8 @@ function Integration() {
     dispatch(
       createSaaS({
         application: "Google Workspace",
-        expiration: "2024-04-19T02:43:14.300Z",
-        description: "Google Admin Console",
+        expiration: "2024-05-19T02:43:14.300Z",
+        description: "Admin Google",
       })
     );
   };
@@ -46,6 +46,7 @@ function Integration() {
   };
 
   const onDelete = (id) => {
+   
     // Display SweetAlert for deletion confirmation
     Swal.fire({
       title: "Are you sure?",
@@ -53,23 +54,24 @@ function Integration() {
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#d33", 
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
+      
       if (result.isConfirmed) {
-        setDeleteItemId(id); // Set the ID of the item to delete if confirmed
+        dispatch(deleteSaaS(id)); // 
       }
     });
   };
 
   const onCancelDelete = () => {
-    // Reset deleteItemId if deletion is canceled
+    // 
     setDeleteItemId(null);
   };
 
   const onConfirmDelete = () => {
-    dispatch(deleteSaaS(deleteItemId)); // Dispatch delete action with the item's ID
-    setDeleteItemId(null); // Reset deleteItemId
+    dispatch(deleteSaaS(deleteItemId)); // 
+    setDeleteItemId(null); //
   };
 
   const filteredSaasList = saasListData.filter((saas) =>
@@ -110,9 +112,9 @@ function Integration() {
               </tr>
             </thead>
             <tbody>
-              {filteredSaasList.map(({ id, application, expiration, description }) => {
+              {filteredSaasList.map(({ _id, application, expiration, description }) => {
                 return (
-                  <tr key={id}>
+                  <tr key={_id}>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -142,13 +144,13 @@ function Integration() {
                         </button>
                         <button
                           className="btn px-6 btn-sm normal-case btn-primary"
-                          onClick={() => onEdit({ id, application, expiration, description })}
+                          onClick={() => onEdit({ _id, application, expiration, description })}
                         >
                           Edit
                         </button>
                         <button
                           className="btn px-6 btn-sm normal-case btn-primary"
-                          onClick={() => onDelete(id)} // Pass the item's ID to onDelete
+                          onClick={() => onDelete(_id)} // Pass the item's ID to onDelete
                         >
                           Delete
                         </button>
@@ -166,7 +168,7 @@ function Integration() {
         <EditModal data={editData} onClose={onCloseModal} onSubmit={onSubmitEdit} />
       )}
 
-      {/* Render DeleteModal if deleteItemId is not null */}
+      
       {deleteItemId && (
         <DeleteModal
           onDelete={onConfirmDelete}
