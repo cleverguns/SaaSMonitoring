@@ -9,6 +9,9 @@ import EditModal from "./components/EditModal";
 import Swal from "sweetalert2"; // Import SweetAlert
 import DeleteModal from "./components/DeleteModal"; 
 
+
+
+
 function Integration() {
   const dispatch = useDispatch();
   const [editData, setEditData] = useState(null);
@@ -24,7 +27,7 @@ function Integration() {
     dispatch(
       createSaaS({
         application: "Google Workspace",
-        expiration: "2024-05-19T02:43:14.300Z",
+        expiration: "2027-06-19T02:43:14.300Z", 
         description: "Admin Google",
       })
     );
@@ -40,14 +43,16 @@ function Integration() {
   };
 
   const onSubmitEdit = (editedData) => {
-    console.log("Submitting edited data:", editedData);
-    dispatch(updateSaaS(editedData));
+    console.log("editedData",editedData)
+    const formattedExpiration = new Date(editedData.expiration).toLocaleDateString("en-US");
+    const updatedData = { ...editedData, expiration: formattedExpiration };
+  
+    console.log("Submitting edited data:", updatedData);
+    dispatch(updateSaaS(updatedData));
     onCloseModal();
   };
-
+  
   const onDelete = (id) => {
-   
-    // Display SweetAlert for deletion confirmation
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -57,21 +62,19 @@ function Integration() {
       cancelButtonColor: "#d33", 
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      
       if (result.isConfirmed) {
-        dispatch(deleteSaaS(id)); // 
+        dispatch(deleteSaaS(id));
       }
     });
   };
 
   const onCancelDelete = () => {
-    // 
     setDeleteItemId(null);
   };
 
   const onConfirmDelete = () => {
-    dispatch(deleteSaaS(deleteItemId)); // 
-    setDeleteItemId(null); //
+    dispatch(deleteSaaS(deleteItemId));
+    setDeleteItemId(null);
   };
 
   const filteredSaasList = saasListData.filter((saas) =>
@@ -84,8 +87,7 @@ function Integration() {
         title="List of All SaaS Application"
         topMargin="mt-2"
         TopSideButtons={<TopSideButtons setSearchQuery={setSearchQuery} />}
-      >
-        {/* Search input */}
+      > 
         <div className="mb-4">
           <input
             type="text"
@@ -138,19 +140,13 @@ function Integration() {
                       <div className="flex gap-2">
                         <button
                           className="btn px-6 btn-sm normal-case btn-primary"
-                          onClick={onSave}
-                        >
-                          Save
-                        </button>
-                        <button
-                          className="btn px-6 btn-sm normal-case btn-primary"
                           onClick={() => onEdit({ _id, application, expiration, description })}
                         >
                           Edit
                         </button>
                         <button
                           className="btn px-6 btn-sm normal-case btn-primary"
-                          onClick={() => onDelete(_id)} // Pass the item's ID to onDelete
+                          onClick={() => onDelete(_id)}
                         >
                           Delete
                         </button>
@@ -168,13 +164,20 @@ function Integration() {
         <EditModal data={editData} onClose={onCloseModal} onSubmit={onSubmitEdit} />
       )}
 
-      
       {deleteItemId && (
         <DeleteModal
           onDelete={onConfirmDelete}
           onCancel={onCancelDelete}
         />
       )}
+
+      {/* Save button outside of the table */}
+      {/* <button
+        className="btn px-6 btn-sm normal-case btn-primary"
+        onClick={onSave}
+      >
+        Save
+      </button> */}
     </>
   );
 }

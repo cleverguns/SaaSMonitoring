@@ -22,9 +22,9 @@ export const createSaaS = createAsyncThunk("saas/createSaaS", async (data) => {
 });
 
 export const updateSaaS = createAsyncThunk("saas/updateSaaS", async (data) => { //put
-  const { id, newData } = data;
+  const { _id, newData } = data;
   const response = await axios.put(
-    `${process.env.REACT_APP_NOTIFICATION_URL}/${id}`,
+    `${process.env.REACT_APP_NOTIFICATION_URL}/${_id}`,
     newData,
     {
       headers: {

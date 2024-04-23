@@ -23,7 +23,7 @@ const AddNewApp = ({ onClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(newApplication);
-    onClose(); // Close the modal after submitting
+    onClose(); 
   };
 
   return (
@@ -32,7 +32,7 @@ const AddNewApp = ({ onClose, onSubmit }) => {
         <h2 className="text-xl font-semibold mb-4">Add New SaaS Application</h2>
         <form onSubmit={handleSubmit}>
           {/* Input fields for each attribute */}
-          {/* Example: */}
+         
           <div className="mb-4">
             <label htmlFor="saasName" className="block font-semibold mb-2">
               SaaS Name:

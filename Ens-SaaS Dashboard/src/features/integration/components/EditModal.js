@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const EditModal = ({ data, onClose, onSubmit }) => {
   const [editedData, setEditedData] = useState(data);
 
   useEffect(() => {
-    // Reset the edited data whenever the data prop changes
     setEditedData(data);
   }, [data]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (name, value) => {
     setEditedData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -19,7 +19,7 @@ const EditModal = ({ data, onClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(editedData);
-    onClose(); // Close the modal after submitting
+    onClose();
   };
 
   return (
@@ -36,7 +36,7 @@ const EditModal = ({ data, onClose, onSubmit }) => {
               id="application"
               name="application"
               value={editedData.application}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
               className="border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
@@ -49,7 +49,7 @@ const EditModal = ({ data, onClose, onSubmit }) => {
               id="adminOwner"
               name="adminOwner"
               value={editedData.adminOwner}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
               className="border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
@@ -61,59 +61,7 @@ const EditModal = ({ data, onClose, onSubmit }) => {
               id="description"
               name="description"
               value={editedData.description}
-              onChange={handleChange}
-              className="border border-gray-300 rounded-md p-2 w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="modeOfPayment" className="block font-semibold mb-2">
-              Mode of Payment:
-            </label>
-            <input
-              type="text"
-              id="modeOfPayment"
-              name="modeOfPayment"
-              value={editedData.modeOfPayment}
-              onChange={handleChange}
-              className="border border-gray-300 rounded-md p-2 w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="billingCycle" className="block font-semibold mb-2">
-              Billing Cycle:
-            </label>
-            <input
-              type="text"
-              id="billingCycle"
-              name="billingCycle"
-              value={editedData.billingCycle}
-              onChange={handleChange}
-              className="border border-gray-300 rounded-md p-2 w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="subscriptionDuration" className="block font-semibold mb-2">
-              Subscription Duration:
-            </label>
-            <input
-              type="text"
-              id="subscriptionDuration"
-              name="subscriptionDuration"
-              value={editedData.subscriptionDuration}
-              onChange={handleChange}
-              className="border border-gray-300 rounded-md p-2 w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="numLicenses" className="block font-semibold mb-2">
-              Number of Licenses:
-            </label>
-            <input
-              type="number"
-              id="numLicenses"
-              name="numLicenses"
-              value={editedData.numLicenses}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
               className="border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
@@ -121,21 +69,17 @@ const EditModal = ({ data, onClose, onSubmit }) => {
             <label htmlFor="expiration" className="block font-semibold mb-2">
               Expiration Date:
             </label>
-            <input
-              type="date"
+            <DatePicker
               id="expiration"
               name="expiration"
-              value={editedData.expiration}
-              onChange={handleChange}
+              selected={editedData.expiration ? new Date(editedData.expiration) : new Date().toISOString()}
+              onChange={(date) => handleChange("expiration", date.toISOString())}
+              dateFormat="MM/dd/yyyy"
               className="border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
           <div className="flex justify-end">
-            <button
-              type="button"
-              className="btn mr-2"
-              onClick={onClose}
-            >
+            <button type="button" className="btn mr-2" onClick={onClose}>
               Cancel
             </button>
             <button type="submit" className="btn btn-primary">
