@@ -1,9 +1,7 @@
-# Task 4/22/2024
+# Bug - duplicate error in SaaS name
+# Tasks
+1. Bugs PPR request form- input validations problem
 
-1. Edit modal-show -for review and refactor - 4/22/2024 
-2. Confirm Delete modal pop up - reference is Add New in Leads 
+2. ADD PLACEHOLDERS FOR ADD NEW APPS
 
-
-1. problem with fetching "put" -edit modal
-
-2. problem in delete
+3. LINK SAAS NAME THEN VIEW ALL DETAILS

@@ -1,12 +1,16 @@
+
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const EditModal = ({ data, onClose, onSubmit }) => {
-  const [editedData, setEditedData] = useState(data);
+  const [editedData, setEditedData] = useState({
+    ...data,
+    expiration: data.expiration || new Date(), 
+  });
 
   useEffect(() => {
-    setEditedData(data);
+    setEditedData({ ...data, expiration: data.expiration || new Date() });
   }, [data]);
 
   const handleChange = (name, value) => {
@@ -14,6 +18,10 @@ const EditModal = ({ data, onClose, onSubmit }) => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleDateChange = (date) => {
+    handleChange("expiration", date);
   };
 
   const handleSubmit = (e) => {
@@ -72,8 +80,8 @@ const EditModal = ({ data, onClose, onSubmit }) => {
             <DatePicker
               id="expiration"
               name="expiration"
-              selected={editedData.expiration ? new Date(editedData.expiration) : new Date().toISOString()}
-              onChange={(date) => handleChange("expiration", date.toISOString())}
+              selected={new Date(editedData.expiration)}
+              onChange={handleDateChange}
               dateFormat="MM/dd/yyyy"
               className="border border-gray-300 rounded-md p-2 w-full"
             />

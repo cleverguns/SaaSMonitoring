@@ -21,11 +21,16 @@ export const createSaaS = createAsyncThunk("saas/createSaaS", async (data) => {
   return response?.data;
 });
 
-export const updateSaaS = createAsyncThunk("saas/updateSaaS", async (data) => { //put
-  const { _id, newData } = data;
+export const updateSaaS = createAsyncThunk("saas/updateSaaS", async (data) => { 
+  const { _id } = data;
+  delete data._id;
+
+  
+  console.log(data);
+  
   const response = await axios.put(
     `${process.env.REACT_APP_NOTIFICATION_URL}/${_id}`,
-    newData,
+    data,
     {
       headers: {
         Authorization: "Bearer sample",
@@ -34,6 +39,7 @@ export const updateSaaS = createAsyncThunk("saas/updateSaaS", async (data) => { 
   );
   return response?.data;
 });
+
 
 export const deleteSaaS = createAsyncThunk("saas/deleteSaaS", async (id) => { //delete
   await axios.delete(`${process.env.REACT_APP_NOTIFICATION_URL}/${id}`, {
@@ -58,6 +64,9 @@ const saasSlice = createSlice({
     builder.addCase(createSaaS.fulfilled, (state, action) => {
       state.createSaaSMessage = action.payload;
     });
+
+    
+    
     builder.addCase(updateSaaS.fulfilled, (state, action) => {
       const index = state.saasListData.findIndex(
         (item) => item.id === action.payload.id
@@ -66,6 +75,8 @@ const saasSlice = createSlice({
         state.saasListData[index] = action.payload;
       }
     });
+
+
     builder.addCase(deleteSaaS.fulfilled, (state, action) => {
       state.saasListData = state.saasListData.filter(
         (item) => item.id !== action.payload
@@ -73,5 +84,7 @@ const saasSlice = createSlice({
     });
   },
 });
+
+
 
 export default saasSlice.reducer;

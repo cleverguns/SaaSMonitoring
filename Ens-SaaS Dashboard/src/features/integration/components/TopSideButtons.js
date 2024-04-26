@@ -89,6 +89,34 @@ const TopSideButtons = () => {
                   className="border border-gray-300 rounded-md p-2 w-full"
                 />
               </div>
+
+
+              <div className="mb-4">
+                <label htmlFor="sample" className="block font-semibold mb-2">
+                  sample2:
+                </label>
+                <textarea
+                  id="sample"
+                  name="sample"
+                  value={saasData.description}
+                  onChange={(e) => setSaasData({ ...saasData, description: e.target.value })}
+                  className="border border-gray-300 rounded-md p-2 w-full"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="sample2" className="block font-semibold mb-2">
+                  sample2:
+                </label>
+                <textarea
+                  id="sample2"
+                  name="sample2"
+                  value={saasData.description}
+                  onChange={(e) => setSaasData({ ...saasData, description: e.target.value })}
+                  className="border border-gray-300 rounded-md p-2 w-full"
+                />
+              </div>
+              
               <div className="flex justify-end">
                 <button type="button" className="btn mr-2" onClick={closeAddModal}>
                   Cancel
@@ -106,3 +134,9 @@ const TopSideButtons = () => {
 };
 
 export default TopSideButtons;
+
+
+
+//Task done ( creating function on adding and api calls debugging)
+
+//todos: //debug in description  fields, and create no need to refresh after api payloads

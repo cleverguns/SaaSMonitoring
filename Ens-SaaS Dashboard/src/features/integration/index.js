@@ -6,10 +6,8 @@ import { createSaaS, getAllSaaS, updateSaaS, deleteSaaS } from "../common/saasSl
 import moment from "moment";
 import TopSideButtons from "./components/TopSideButtons";
 import EditModal from "./components/EditModal";
-import Swal from "sweetalert2"; // Import SweetAlert
+import Swal from "sweetalert2";
 import DeleteModal from "./components/DeleteModal"; 
-
-
 
 
 function Integration() {
@@ -33,6 +31,13 @@ function Integration() {
     );
   };
 
+
+
+
+
+
+  
+
   const onEdit = (data) => {
     console.log("Edit button clicked with data:", data);
     setEditData(data);
@@ -43,16 +48,15 @@ function Integration() {
   };
 
   const onSubmitEdit = (editedData) => {
-    console.log("editedData",editedData)
     const formattedExpiration = new Date(editedData.expiration).toLocaleDateString("en-US");
     const updatedData = { ...editedData, expiration: formattedExpiration };
-  
-    console.log("Submitting edited data:", updatedData);
     dispatch(updateSaaS(updatedData));
     onCloseModal();
   };
-  
-  const onDelete = (id) => {
+ 
+
+
+  const onDelete = (id) => { 
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -105,42 +109,27 @@ function Integration() {
                 <th>SaaS Name</th>
                 <th>Admin/Owner</th>
                 <th>Description</th>
-                <th>Mode of payment</th>
-                <th>Billing Cycle</th>
-                <th>Subscription Duration</th>
-                <th>Number of licenses</th>
                 <th>Expiration</th>
+                <th>Description</th>
+                <th>Description</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {filteredSaasList.map(({ _id, application, expiration, description }) => {
+              {filteredSaasList.map(({ _id, application, adminOwner, description, expiration }) => {
                 return (
                   <tr key={_id}>
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar">
-                          {/* <div className="mask mask-circle w-12 h-12">
-                            <img src={l.avatar} alt="Avatar" /> 
-                          </div> TODO" AVATAR / ICON*/}
-                        </div>
-                        <div>
-                          <div className="font-bold">{application}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{/* Display Admin/Owner */}</td>
-                    <td>{/* Display Description */}</td>
-                    <td>{/* Display Mode of payment */}</td>
-                    <td>{/* Display Billing Cycle */}</td>
-                    <td>{/* Display Subscription Duration */}</td>
-                    <td>{/* Display Number of licenses */}</td>
+                    <td>{application}</td>
+                    <td>{adminOwner}</td>
+                    <td>{description}</td>
                     <td>{moment(expiration).format("LL")}</td>
+                    <td>{description}</td>
+                    <td>{description}</td>
                     <td>
                       <div className="flex gap-2">
                         <button
                           className="btn px-6 btn-sm normal-case btn-primary"
-                          onClick={() => onEdit({ _id, application, expiration, description })}
+                          onClick={() => onEdit({ _id, application, adminOwner, description, expiration })}
                         >
                           Edit
                         </button>
@@ -161,8 +150,13 @@ function Integration() {
       </TitleCard>
 
       {editData && (
-        <EditModal data={editData} onClose={onCloseModal} onSubmit={onSubmitEdit} />
+        <EditModal
+          data={editData}
+          onClose={onCloseModal}
+          onSubmit={onSubmitEdit}
+        />
       )}
+
 
       {deleteItemId && (
         <DeleteModal
@@ -170,14 +164,6 @@ function Integration() {
           onCancel={onCancelDelete}
         />
       )}
-
-      {/* Save button outside of the table */}
-      {/* <button
-        className="btn px-6 btn-sm normal-case btn-primary"
-        onClick={onSave}
-      >
-        Save
-      </button> */}
     </>
   );
 }

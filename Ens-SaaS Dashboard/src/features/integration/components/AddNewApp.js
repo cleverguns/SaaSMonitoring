@@ -47,6 +47,20 @@ const AddNewApp = ({ onClose, onSubmit }) => {
               required
             />
           </div>
+          <div className="mb-4">
+            <label htmlFor="saasName" className="block font-semibold mb-2">
+              SaaS Name:
+            </label>
+            <input
+              type="text"
+              id="saasName"
+              name="saasName"
+              value={newApplication.saasName}
+              onChange={handleChange}
+              className="border border-gray-300 rounded-md p-2 w-full"
+              required
+            />
+          </div>
           {/* Repeat similar blocks for other attributes */}
           <div className="flex justify-end">
             <button type="button" className="btn mr-2" onClick={onClose}>
